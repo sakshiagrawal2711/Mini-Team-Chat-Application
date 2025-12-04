@@ -42,7 +42,7 @@ const ChatArea = ({ channel }) => {
     const fetchMessages = async (pageNum, replace = false) => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get(`http://localhost:5000/api/messages/${channel._id}?page=${pageNum}&limit=20`, {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/messages/${channel._id}?page=${pageNum}&limit=20`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
