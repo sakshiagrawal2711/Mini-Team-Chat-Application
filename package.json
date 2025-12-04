@@ -1,0 +1,12 @@
+{
+    "name": "mini-team-chat-application-root",
+    "version": "1.0.0",
+    "description": "Root package for deployment",
+    "scripts": {
+        "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+        "start": "npm start --prefix server"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
