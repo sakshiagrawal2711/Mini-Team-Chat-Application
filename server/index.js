@@ -23,7 +23,7 @@ const io = new Server(server, {
 
 // Connect and Sync DB
 connectDB().then(() => {
-    sequelize.sync().then(() => console.log('DB Synced'));
+    sequelize.sync({ alter: true }).then(() => console.log('DB Synced'));
 });
 
 // Socket.io Logic

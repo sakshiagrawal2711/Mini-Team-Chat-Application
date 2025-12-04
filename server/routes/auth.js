@@ -61,4 +61,19 @@ router.get('/me', protect, async (req, res) => {
   }
 });
 
+router.delete('/delete', protect, async (req, res) => {
+  try {
+    console.log('Attempting to delete user:', req.user.id);
+    const result = await User.destroy({
+      where: { id: req.user.id },
+      force: true
+    });
+    console.log('Delete result:', result);
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Delete error:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { FaPlus, FaHashtag, FaSignOutAlt } from 'react-icons/fa';
+import { FaPlus, FaHashtag, FaSignOutAlt, FaTrash } from 'react-icons/fa';
 
 const Sidebar = ({ onSelectChannel, selectedChannel }) => {
     const [channels, setChannels] = useState([]);
@@ -37,6 +37,21 @@ const Sidebar = ({ onSelectChannel, selectedChannel }) => {
             setNewChannelName('');
         } catch (error) {
             alert('Failed to create channel');
+        }
+    };
+
+    const deleteAccount = async () => {
+        if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            try {
+                const token = localStorage.getItem('token');
+                await axios.delete('http://localhost:5000/api/auth/delete', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                logout();
+            } catch (error) {
+                console.error(error);
+                alert('Failed to delete account');
+            }
         }
     };
 
@@ -76,6 +91,9 @@ const Sidebar = ({ onSelectChannel, selectedChannel }) => {
                     </div>
                     <div className="truncate font-semibold">{user?.username}</div>
                 </div>
+                <button onClick={deleteAccount} className="mt-2 text-red-400 hover:text-red-300 text-xs flex items-center">
+                    <FaTrash className="mr-1" /> Delete Account
+                </button>
             </div>
 
             {showCreateModal && (
