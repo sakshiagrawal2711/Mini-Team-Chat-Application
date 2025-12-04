@@ -56,7 +56,7 @@ const Sidebar = ({ onSelectChannel, selectedChannel }) => {
     };
 
     return (
-        <div className="w-64 bg-gray-900 text-white flex flex-col flex-shrink-0">
+        <div className="w-64 bg-gray-900 text-white flex flex-col flex-shrink-0 h-full">
             <div className="p-4 border-b border-gray-700 flex justify-between items-center">
                 <h1 className="font-bold text-xl">Mini Chat</h1>
                 <button onClick={logout} className="text-gray-400 hover:text-white" title="Logout">

@@ -19,7 +19,7 @@ const UserList = () => {
     }, [socket]);
 
     return (
-        <div className="w-64 bg-white border-l border-gray-200 hidden lg:block flex-shrink-0">
+        <div className="w-64 bg-white border-l border-gray-200 flex-shrink-0 h-full">
             <div className="p-4 border-b border-gray-200">
                 <h2 className="font-bold text-gray-700">Online Users</h2>
             </div>
