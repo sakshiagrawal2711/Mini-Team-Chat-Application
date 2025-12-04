@@ -16,7 +16,7 @@ const Sidebar = ({ onSelectChannel, selectedChannel }) => {
     const fetchChannels = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get('http://localhost:5000/api/channels', {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/channels`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setChannels(data);
@@ -29,7 +29,7 @@ const Sidebar = ({ onSelectChannel, selectedChannel }) => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.post('http://localhost:5000/api/channels', { name: newChannelName }, {
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/channels`, { name: newChannelName }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setChannels([...channels, data]);
@@ -44,7 +44,7 @@ const Sidebar = ({ onSelectChannel, selectedChannel }) => {
         if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete('http://localhost:5000/api/auth/delete', {
+                await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/delete`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 logout();
